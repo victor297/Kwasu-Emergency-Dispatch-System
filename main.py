@@ -1,4 +1,5 @@
 import json
+import re
 import streamlit as st
 import datetime
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -258,9 +259,15 @@ def main():
             duty_query = f"today is {get_day_of_week()} i need doctor and a driver on duty"
             duty_response = get_duty_staff(duty_query)
             st.write(duty_response)
+            pattern = r'0\d{10}'
+            matches = re.findall(pattern, duty_response)
+            if len(matches) >= 2:
+                st.write(matches[0], matches[1])
+            else:
+                st.write("Not enough phone numbers found")
             # Send the email
             subject = "Ambulance Request"
-            body = f"Request Location: {latitude}, {longitude}\n\nDetails:\n{duty_response}"
+            body = f"Request Location: {latitude},{longitude}\n\nDetails:\n{duty_response}"
             to_email = "davidvictor297@gmail.com"  # Replace with the actual email address
 
             if send_email(subject, body, to_email):
@@ -294,7 +301,14 @@ def main():
                     if st.button("Request Ambulance 🚑💉💊😷🧑‍⚕️"):
                         duty_query = f"today is {get_day_of_week()} i need doctor and a driver on duty"
                         duty_response = get_duty_staff(duty_query)
-                        st.write(duty_response)
+                        pattern = r'0\d{10}'
+                        
+                        matches = re.findall(pattern, duty_response)
+                        if len(matches) >= 2:
+                            st.write(matches[0], matches[1])
+                        else:
+                            st.write("Not enough phone numbers found")
+
 
     elif tab_choice == "Admin":
         st.header("Admin Section")

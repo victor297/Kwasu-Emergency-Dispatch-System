@@ -260,7 +260,7 @@ def main():
             st.write(duty_response)
             # Send the email
             subject = "Ambulance Request"
-            body = f"Request Location: {latitude}, {longitude}\n\nDetails:\n{duty_response}"
+            body = f"Request Location: https://www.google.com/maps/?q={latitude}, {longitude}\n\nDetails:\n{duty_response}"
             to_email = "davidvictor297@gmail.com"  # Replace with the actual email address
 
             if send_email(subject, body, to_email):

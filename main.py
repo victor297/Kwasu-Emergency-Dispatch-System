@@ -263,11 +263,14 @@ def main():
             matches = re.findall(pattern, duty_response)
             if len(matches) >= 2:
                 st.write(matches[0], matches[1])
+                st.markdown(f"Doctor:  [📞 {matches[0]}](tel:{matches[0]}) Driver:  [📞 {matches[1]}](tel:{matches[1]})")
+                st.markdown(f"[chat with doctor](https://wa.me/+234{matches[0]}) [chat with driver](https://wa.me/+234{matches[1]})")
+
             else:
                 st.write("Not enough phone numbers found")
             # Send the email
             subject = "Ambulance Request"
-            body = f"Request Location: {latitude},{longitude}\n\nDetails:\n{duty_response}"
+            body = f"Request Location: https://www.google.com/maps/?q={latitude},{longitude}\n\nDetails:\n{duty_response}"
             to_email = "davidvictor297@gmail.com"  # Replace with the actual email address
 
             if send_email(subject, body, to_email):

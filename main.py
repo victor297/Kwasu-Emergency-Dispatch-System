@@ -20,6 +20,7 @@ from email.mime.text import MIMEText
 
 from streamlit_geolocation import streamlit_geolocation
 
+
 # Function to fetch and verify location
 def fetch_location():
     location = streamlit_geolocation()
@@ -247,6 +248,7 @@ def main():
 
     if tab_choice == "Emergency":
         st.header("Kwasu Emergency Dispatch System 🚑")
+        st.write("By FAGBENJA RIDWAN OKIKIOLA 20/47CS/01113")
         
         map_obj, distance_km, time_hours = display_map(latitude, longitude)  # Pass latitude and longitude to display_map
         st_folium(map_obj, width=700, height=500)  # Display the map

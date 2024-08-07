@@ -287,11 +287,11 @@ def main():
         st.success("Database Indexed Successfully.")
 
         user_question = st.text_input("Ask a Question", key="user_question_text")
-        if st.button("Speak a Question"):
-            user_question = speech_to_text()
-            if user_question:
-                user_input(user_question)
-        elif st.button("Submit", key="submit_question"):
+        # if st.button("Speak a Question"):
+        #     user_question = speech_to_text()
+        #     if user_question:
+        #         user_input(user_question)
+        if st.button("Submit", key="submit_question"):
             if user_question:
                 user_input(user_question)
         

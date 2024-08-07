@@ -296,7 +296,7 @@ def main():
                 user_input(user_question)
         
         if "gemini_response" in st.session_state:
-            st.write("JoanAI's Response: ", st.session_state["gemini_response"])
+            st.write("KwasuAI's Response: ", st.session_state["gemini_response"])
 
             if st.session_state.get("show_recommendation", False):
                 recommend = st.radio("Do you want to request an emergency?", ("Yes", "No"), key="recommend")

@@ -20,7 +20,16 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 from streamlit_geolocation import streamlit_geolocation
+# Assuming jsondat is the filename (with .json extension)
+filename = "test.json"
 
+# Open the file and load the data
+with open(filename, 'r') as file:
+    data = json.load(file)
+
+# Now you can access the email
+email = data["email"]
+print(email)
 
 # Function to fetch and verify location
 def fetch_location():
@@ -271,7 +280,7 @@ def main():
             # Send the email
             subject = "Ambulance Request"
             body = f"Request Location: https://www.google.com/maps/?q={latitude},{longitude}\n\nDetails:\n{duty_response}"
-            to_email = "davidvictor297@gmail.com"  # Replace with the actual email address
+            to_email = email  # Replace with the actual email address
 
             if send_email(subject, body, to_email):
                 st.success("Ambulance request sent successfully!")
